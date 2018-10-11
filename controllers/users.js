@@ -1,6 +1,4 @@
 
-
-
 const Review = require('../models/charity');
 const Comment = require('../models/user');
 

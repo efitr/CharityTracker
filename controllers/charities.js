@@ -1,42 +1,46 @@
 
-
-
-const Review = require('../models/charity');
-const Comment = require('../models/user');
+const Charity = require('../models/charity');
+const Opinion = require('../models/opinion');
 
 function charities(app){
 // INDEX
-app.get('/posts', function(req, res){
-
+app.get('/charities', function(req, res){
+//get the basic webpage with all the charities
+  Charity.find()
+  .then(charities => {
+    res.render('charity-index', {charities: charities});
+  }).catch(err => {
+    console.log(err);
+  });
 });
 
 // SHOW
-app.get('/posts/:id', function(req, res){
-
+app.get('/charities/:id', function(req, res){
+//get a particular charity
 });
 
 // NEW
-app.get('/posts/new', function(req, res){
-
+app.get('/charities/new', function(req, res){
+//get the form to fill a new charity
 });
 
 // CREATE
-app.post('/posts', function(req, res){
-
+app.post('/charities', function(req, res){
+//get the form of the charity you just made
 });
 
 // EDIT
-app.get('/posts/:id/edit', function(req, res){
-
+app.get('/charities/:id/edit', function(req, res){
+//get the new form with all the data from this particular charity
 });
 
 // UPDATE
-app.put('/posts/:id', function(req, res){
-
+app.put('/charities/:id', function(req, res){
+//get back to the charity form with the updated data 
 });
 
 // DESTROY
-app.delete('/posts/:id', function(req, res){
-
+app.delete('/charities/:id', function(req, res){
+//get back to the index 
 });
 }

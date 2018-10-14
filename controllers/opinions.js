@@ -6,7 +6,7 @@ const Comment = require('../models/user');
 function opinions(app){
 // INDEX
 app.get('/posts', function(req, res){
-
+//
 });
 
 // SHOW

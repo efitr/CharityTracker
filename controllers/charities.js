@@ -21,19 +21,16 @@ app.get('/', (req, res) => {
 
 // SHOW
 app.get('/charities/:id', (req, res) => {
-//get a particular charity
+// //get a particular charity
   Charity.findById(req.params.id)
   .then((charity) => {
-    Comment.find({ charityId: req.params.id })
-      .then(opinions => {
-        console.log("route get('/charities/:id - get the opinions included")
-        res.render('charities-show', {
-          charity: charity, 
-          opinions: opinions
-        })
-        console.log("renders(charities-show)")
-        console.log("-----")
-      })
+//     Opinion.find({ charityId: req.params.id })
+//       .then(opinions => {
+//         console.log("route get('/charities/:id - get the opinions included")
+        res.render('charities-show', { charity: charity })
+//         console.log("renders(charities-show)")
+//         console.log("-----")
+//       })
   }).catch((err) => {
     console.log(err.message);
   });

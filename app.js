@@ -10,21 +10,22 @@ app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 app.use(methodOverride('_method'));
 
-const charities = require('./controllers/charities')(app);
-const opinions = require('./controllers/opinions')(app);
-const users = require('./controllers/users')(app);
-
-const mongoose = require('mongoose');
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/rotten-potatoes', {useNewUrlParser: true});
-
 module.exports = app;
 
+const charities = require('./controllers/charities')(app)
+// const opinions = require('./controllers/opinions')(app);
+// const users = require('./controllers/users')(app);
+
+const mongoose = require('mongoose');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/charity-tracker', {useNewUrlParser: true});
 
 
 
-app.listen(3000, () => {
-  console.log('App listening on port 3000!')
-})
+
+
+// app.listen(3000, () => {
+//   console.log('App listening on port 3000!')
+// })
 // Added after heroku
-// const port = process.env.PORT || 3000;
-// app.listen(port);
+const port = process.env.PORT || 3000;
+app.listen(port);

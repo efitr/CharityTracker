@@ -1,41 +1,31 @@
 
 
-const Review = require('../models/charity');
-const Comment = require('../models/user');
+const Opinion = require('../models/opinion');
+//const User = require('../models/user');
 
 function opinions(app){
-// INDEX
-app.get('/posts', function(req, res){
-//
-});
 
-// SHOW
-app.get('/posts/:id', function(req, res){
+  // CREATE
+  app.post('/charities/opinions', (req, res) => {
+    Opinion.create(req.body).then(opinion => {
+      res.redirect(`/charities/${opinion.charityId}`)
+      console.log("route post(/charities/opinions) - redirects(/charities/${opinion.charityId})")
+      console.log("-----")
+    }).catch((err) => {
+      console.log(err.message)
+    })
+  });
 
-});
-
-// NEW
-app.get('/posts/new', function(req, res){
-
-});
-
-// CREATE
-app.post('/posts', function(req, res){
-
-});
-
-// EDIT
-app.get('/posts/:id/edit', function(req, res){
-
-});
-
-// UPDATE
-app.put('/posts/:id', function(req, res){
-
-});
-
-// DESTROY
-app.delete('/posts/:id', function(req, res){
-
-});
+  // DESTROY
+  app.delete('/charities/opinions/:id', (req, res) => {
+    Opinion.findByIdAndRemove(req.params.id).then((opinion) => {
+      res.redirect(`/charities/${opinion.charityId}`);
+      console.log("delete(/charities/opinions/:id) - redirect(/charities/${opinion.charityId})")
+      console.log("-----")
+    }).catch((err) => {
+      console.log(err.message);
+    });
+  });
 }
+
+module.exports = opinions;

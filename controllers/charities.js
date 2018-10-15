@@ -19,20 +19,50 @@ app.get('/', (req, res) => {
 });
 
 
-// // SHOW
-// app.get('/charities/:id', function(req, res){
-// //get a particular charity
-// });
+// SHOW
+app.get('/charities/:id', (req, res) => {
+//get a particular charity
+  Charity.findById(req.params.id)
+  .then((charity) => {
+    Comment.find({ charityId: req.params.id })
+      .then(opinions => {
+        console.log("route get('/charities/:id - get the opinions included")
+        res.render('charities-show', {
+          charity: charity, 
+          opinions: opinions
+        })
+        console.log("renders(charities-show)")
+        console.log("-----")
+      })
+  }).catch((err) => {
+    console.log(err.message);
+  });
+});
 
-// // NEW
-// app.get('/charities/new', function(req, res){
-// //get the form to fill a new charity
-// });
+// NEW
+app.get('/charities/new', (req, res) => {
+//get the form to fill a new charity
+  console.log("route get(/charities/new) - new form")
+  res.render('charities-new', {});
+  console.log("renders(charities-new)")
+  console.log("-----")
+});
 
-// // CREATE
-// app.post('/charities', function(req, res){
-// //get the form of the charity you just made
-// });
+// CREATE
+app.post('/charities', (req, res) => {
+//get the form of the charity you just made
+  Charity.create(req.body)
+    .then((charity) => {
+      console.log("that charity id")
+      console.log(charity._id);
+      console.log("route post(/charities) - redirect(charities/:id)")
+      res.redirect(`/charities/${charity._id}`);
+      console.log("back(charities-show)")
+      console.log("-----")
+    }).catch((err) => {
+      console.log(err.message);
+  });
+});
 
 // // EDIT
 // app.get('/charities/:id/edit', function(req, res){

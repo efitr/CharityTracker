@@ -5,8 +5,8 @@ const mongoose = require('mongoose');
 var Charity = mongoose.model('Charity', {
     
     name: String,
-    purpose: String,
     description: String,
+    purpose: String,
     image: String
 });
 //Makes it be available for other parts

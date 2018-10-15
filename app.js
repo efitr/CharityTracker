@@ -10,6 +10,7 @@ app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 app.use(methodOverride('_method'));
 
+module.exports = app;
 
 const charities = require('./controllers/charities')(app)
 // const opinions = require('./controllers/opinions')(app);
@@ -18,7 +19,6 @@ const charities = require('./controllers/charities')(app)
 const mongoose = require('mongoose');
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/charity-tracker', {useNewUrlParser: true});
 
-//module.exports = app;
 
 
 

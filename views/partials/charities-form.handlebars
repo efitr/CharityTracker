@@ -1,0 +1,22 @@
+<!-- views/partials/charities-form.handlebars -->
+
+<fieldset>
+  <legend>Edit Charity</legend>
+  <!-- TITLE -->
+  <div class="form-group">
+    <label for="charity-purpose">Title</label><br>
+    <input id="charity-purpose" type="text" name="purpose" value="{{charity.purpose}}"/>
+  </div>
+
+  <!-- MOVIE TITLE -->
+  <div class="form-group">
+    <label for="charity-name">Movie Title</label><br>
+    <input id="charity-name" type="text" name="name" value="{{charity.name}}" />
+  </div>
+
+  <!-- DESCRIPTION -->
+  <div class="form-group">
+    <label for="charity-description">Description</label><br>
+    <textarea id="charity-description" name="description" rows="10" />{{charity.description}}</textarea>
+  </div>
+</fieldset>

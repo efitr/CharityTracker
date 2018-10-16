@@ -13,7 +13,7 @@ app.use(methodOverride('_method'));
 module.exports = app;
 
 const charities = require('./controllers/charities')(app)
-// const opinions = require('./controllers/opinions')(app);
+const opinions = require('./controllers/opinions')(app)
 // const users = require('./controllers/users')(app);
 
 const mongoose = require('mongoose');

@@ -18,24 +18,6 @@ app.get('/', (req, res) => {
   });
 });
 
-
-// SHOW
-app.get('/charities/:id', (req, res) => {
-// //get a particular charity
-  Charity.findById(req.params.id)
-  .then((charity) => {
-//     Opinion.find({ charityId: req.params.id })
-//       .then(opinions => {
-//         console.log("route get('/charities/:id - get the opinions included")
-        res.render('charities-show', { charity: charity })
-//         console.log("renders(charities-show)")
-//         console.log("-----")
-//       })
-  }).catch((err) => {
-    console.log(err.message);
-  });
-});
-
 // NEW
 app.get('/charities/new', (req, res) => {
 //get the form to fill a new charity
@@ -61,20 +43,67 @@ app.post('/charities', (req, res) => {
   });
 });
 
+
+
+// SHOW
+app.get('/charities/:id', (req, res) => {
+  // //get a particular charity
+  
+    // Yes, it's a valid ObjectId, proceed with `findById` call.
+  
+    Charity.findById(req.params.id)
+    .then((charity) => {
+      Opinion.find({ charityId: req.params.id })
+        .then(opinions => {
+          console.log("route get('/charities/:id - get the opinions included")
+          res.render('charities-show', { charity: charity, opinions: opinions })
+          console.log("renders(charities-show)")
+          console.log("-----")
+        })
+      
+    }).catch((err) => {
+      console.log(err.message);
+    });
+  });
+  
 // // EDIT
-// app.get('/charities/:id/edit', function(req, res){
-// //get the new form with all the data from this particular charity
-// });
+app.get('/charities/:id/edit', function(req, res){
+//get the new form with all the data from this particular charity
+  Charity.findById(req.params.id, function(err, charity) {
+    res.render('charities-edit', {charity: charity});
+    console.log("route get(/charities/:id/edit) - ")
+    console.log("renders(charities-edit)")
+    console.log("-----")
+  });
+});
 
 // // UPDATE
-// app.put('/charities/:id', function(req, res){
-// //get back to the charity form with the updated data 
-// });
+app.put('/charities/:id', (req, res) => {
+//get back to the charity form with the updated data 
+  Charity.findByIdAndUpdate(req.params.id, req.body)
+  .then(charity => {
+    res.redirect(`/charities/${charity._id}`);
+    console.log("route put(/charities/:id)")
+    console.log("back()")
+    console.log("-----")
+  }).catch(err => {
+    console.log(err.message);
+  });
+});
 
 // // DESTROY
-// app.delete('/charities/:id', function(req, res){
-// //get back to the index 
-// });
+app.delete('/charities/:id', function(req, res){
+//get back to the index 
+  Charity.findByIdAndRemove(req.params.id)
+  .then((charity) => {
+    res.redirect('/')
+    console.log("route delete(/charities/:id)")
+    console.log("back to the root route")
+    console.log("-----")
+  }).catch((err) => {
+    console.log(err.message);
+  });
+});
 }
 
 module.exports = charities;

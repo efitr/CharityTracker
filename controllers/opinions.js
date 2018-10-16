@@ -3,7 +3,7 @@
 const Opinion = require('../models/opinion');
 //const User = require('../models/user');
 
-function opinions(app){
+function opinions(app) {
 
   // CREATE
   app.post('/charities/opinions', (req, res) => {

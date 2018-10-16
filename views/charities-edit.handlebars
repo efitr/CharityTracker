@@ -1,0 +1,13 @@
+<!-- views/charities-edit.handlebars -->
+
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-3">
+    <form method="POST" action="/charities/{{charity._id}}?_method=PUT">
+      {{> charities-form}}
+      <!-- BUTTON -->
+      <div class="form-group">
+        <button class="btn btn-primary" type="submit">Save Charity</button>
+      </div>
+    </form>
+  </div>
+</div>

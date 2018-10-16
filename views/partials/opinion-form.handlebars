@@ -1,9 +1,9 @@
 <!-- views/partials/opinion-form.handlebars -->
 
   <form action="/charities/opinions" method="post">
-    <input type="hidden" value="{{opinion._id}}" name="charityId">
+    <input type="hidden" value="{{charity._id}}" name="charityId">
     <fieldset>
-      <legend>Add a Comment</legend>
+      <legend>Have an opinion</legend>
       <!-- TITLE -->
       <div class="form-group">
         <label for="opinion-title">Title</label><br>
@@ -27,6 +27,6 @@
 
     <!-- BUTTON -->
     <div class="form-group">
-      <button class="btn btn-primary" type="submit">Save Comment</button>
+      <button class="btn btn-primary" type="submit">Save Opinion</button>
     </div>
 </form>

@@ -38,11 +38,4 @@ var UserSchema = new mongoose.Schema({
 var User = mongoose.model('User', UserSchema);
 
 module.exports = User;
-// module.exports = User;
-
-//async
-// const bcrypt = require('bcrypt');
-// const saltRounds = 10;
-// const myPlaintextPassword = 's0/\/\P4$$w0rD';
-// const someOtherPlaintextPassword = 'not_bacon';
 
